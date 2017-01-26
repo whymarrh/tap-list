@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import * as os from 'os';
 
 const chalk = require(`chalk`);

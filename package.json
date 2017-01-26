@@ -22,7 +22,7 @@
     "typescript": "^2.1.5"
   },
   "scripts": {
-    "test": "tsc --project ."
+    "test": "tsc --project . && printf '%s\\n%s' '#!/usr/bin/env node' \"$(< index.js)\" > index.js"
   },
   "repository": {
     "type": "git",
