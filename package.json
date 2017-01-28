@@ -1,6 +1,6 @@
 {
   "name": "tap-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "List-like TAP output formatter",
   "bin": {
     "tap-list": "index.js"
