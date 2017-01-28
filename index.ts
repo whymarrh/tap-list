@@ -12,9 +12,7 @@ const trimStart = require(`lodash.trimstart`);
 class Test {
     private _failed = false;
 
-    constructor(readonly name: string) {
-        // ???
-    }
+    constructor(readonly name: string) { /* empty */ }
 
     get failed() {
         return this._failed;
