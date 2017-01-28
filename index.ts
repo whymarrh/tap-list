@@ -44,18 +44,18 @@ module.exports = (opts: Options) => {
     const parser = tapOut();
     const stream = duplexer(parser, output);
     const println = (text: string = ``): void => output.push(`${text}${os.EOL}`);
+    const printTest = (t: Test): void => {
+        if (!t || (!t.failed && opts.hideSuccess)) {
+            return;
+        }
+
+        const symbol = t.failed ? chalk.red(symbols.cross) : chalk.green(symbols.tick);
+        println(`${symbol}  ${t.name}`);
+    };
 
     let next: Test;
     parser.on(`test`, (test: any) => {
-        if (next) {
-            if (!next.failed && opts.hideSuccess) {
-                return;
-            }
-
-            const symbol = next.failed ? chalk.red(symbols.cross) : chalk.green(symbols.tick);
-            println(`${symbol}  ${next.name}`);
-        }
-
+        printTest(next);
         next = new Test(test.name);
     });
 
@@ -69,6 +69,7 @@ module.exports = (opts: Options) => {
             return;
         }
 
+        printTest(next);
         println();
         println(`${count(results.tests.length, `test`)} (${count(results.asserts.length, `assertion`)})`);
         println();
